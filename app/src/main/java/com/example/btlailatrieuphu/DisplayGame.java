@@ -1,5 +1,7 @@
     package com.example.btlailatrieuphu;
 
+    import static android.view.View.INVISIBLE;
+
     import android.app.Dialog;
     import android.content.DialogInterface;
     import android.content.Intent;
@@ -28,6 +30,8 @@
     import org.json.JSONObject;
 
     import java.util.ArrayList;
+    import java.util.Collection;
+    import java.util.Collections;
     import java.util.List;
 
     public class DisplayGame extends AppCompatActivity {
@@ -38,7 +42,7 @@
         private  int currentQuestionIndex = 0 , currentMoney = 0 , rewardMoney = 0  ;
         private ImageView btnMenu;
         private  int[] moneyLevels = {200000 , 500000 , 1000000 , 1500000 , 3000000 , 5000000 , 7000000 , 10000000 , 11000000 , 15000000 , 20000000 , 25000000,30000000 , 40000000, 50000000  };
-
+        private  boolean use50helper = false , useCallFriend = false ;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -78,7 +82,7 @@
 
                                     questionList.add(new Question(questionText, answerList, correctAns));
                                 }
-
+                                Collections.shuffle(questionList);
                                 // Hiển thị câu hỏi đầu tiên
                                 if (!questionList.isEmpty()) {
                                     showQuestion();
@@ -103,17 +107,21 @@
         }
 
         private void showQuestion() {
+            btnAns1.setVisibility(View.VISIBLE);
+            btnAns2.setVisibility(View.VISIBLE);
+            btnAns3.setVisibility(View.VISIBLE);
+            btnAns4.setVisibility(View.VISIBLE);
             if(currentQuestionIndex >= questionList.size()){
-                Toast.makeText(DisplayGame.this , "Hoan thanh tro choi" , Toast.LENGTH_LONG).show();
+                Toast.makeText(DisplayGame.this , "Hoàn thành trò chơi" , Toast.LENGTH_LONG).show();
             }
             Question q = questionList.get(currentQuestionIndex);
             txtQuestion.setText(q.getQuestionText());
             currentMoney = moneyLevels[currentQuestionIndex];
             txtCurrentMoney.setText("Tiền thưởng +" + currentMoney + "VND");
-            btnAns1.setText(q.getAnswer().get(0));
-            btnAns2.setText(q.getAnswer().get(1));
-            btnAns3.setText(q.getAnswer().get(2));
-            btnAns4.setText(q.getAnswer().get(3));
+            btnAns1.setText("A: " +q.getAnswer().get(0));
+            btnAns2.setText("B: " + q.getAnswer().get(1));
+            btnAns3.setText("C: " + q.getAnswer().get(2));
+            btnAns4.setText("D: "+q.getAnswer().get(3));
             txtQuesNum.setText("Câu " + (currentQuestionIndex +1));
 
             setButtonEventClick(q);
@@ -124,10 +132,10 @@
                 @Override
                 public void onClick(View v) {
                     int selectedAns = -1 ;
-                    if(v == btnAns1) selectedAns = 0 ;
-                    else if(v == btnAns2) selectedAns = 1 ;
-                    else if(v == btnAns3) selectedAns = 2 ;
-                    else if (v == btnAns4) selectedAns = 3 ;
+                    if(v == btnAns1) selectedAns = 1 ;
+                    else if(v == btnAns2) selectedAns = 2 ;
+                    else if(v == btnAns3) selectedAns = 3 ;
+                    else if (v == btnAns4) selectedAns = 4 ;
                     if(selectedAns == q.getCorrectAns()){
                         showResult(true);
                     }
@@ -148,6 +156,7 @@
             dialog.setContentView(R.layout.notify_result);
             Button btnContinue = dialog.findViewById(R.id.btnContinue);
             TextView txtResult = dialog.findViewById(R.id.txtResult);
+            TextView txtResult2 = dialog.findViewById(R.id.txtResult2);
             if(isTrue){
 
                 txtResult.setText("Chính xác !!!");
@@ -164,7 +173,8 @@
                 });
             }
             else{
-                txtResult.setText("Sai rồi !!!");
+                txtResult.setText("Sai rồi !!! " );
+                txtResult2.setText("Đáp án là " + q.getAnswer().get(q.getCorrectAns()-1));
                 btnContinue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -220,7 +230,70 @@
                 }
 
             });
+//            helper collection
+            ImageView btn50 = dialog.findViewById(R.id.btn50);
+
+            if(use50helper){
+                btn50.setVisibility(INVISIBLE);
+            }
+            else{
+                btn50.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fiftyFifty(questionList.get(currentQuestionIndex));
+                        use50helper= true;
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+//          callFriend
+            ImageView btnCallFriend = dialog.findViewById(R.id.btnFriend);
+            if(useCallFriend){
+                btnCallFriend.setVisibility(INVISIBLE);
+            }
+            else {
+                btnCallFriend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        callFriend(questionList.get(currentQuestionIndex));
+                        useCallFriend = true;
+                    }
+                });
+            }
             dialog.show();
         }
+        private void fiftyFifty(Question q){
+            int index = q.getCorrectAns();
+            List<Integer> hide = new ArrayList<>();
+            for(int i = 1 ; i <= 4 ; i ++){
+                if(i != index){
+                    hide.add(i);
+                }
+            }
+            Collections.shuffle(hide);
+            for(int j = 0 ; j < 2 ; j++){
+                if(hide.get(j) == 1) btnAns1.setVisibility(View.INVISIBLE);
+                if(hide.get(j) == 2) btnAns2.setVisibility(View.INVISIBLE);
+                if(hide.get(j) == 3) btnAns3.setVisibility(View.INVISIBLE);
+                if(hide.get(j) == 4) btnAns4.setVisibility(View.INVISIBLE);
+            }
 
+        }
+        private void callFriend(Question q){
+            int index = q.getCorrectAns();
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.call_friend);
+            TextView suggest = dialog.findViewById(R.id.txtSuggest);
+            suggest.setText("Tôi nghĩ đáp án sẽ là " + q.getAnswer().get(q.getCorrectAns()-1) + "!!!");
+            Button btnContinue = dialog.findViewById(R.id.btnContinue);
+            btnContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
     }

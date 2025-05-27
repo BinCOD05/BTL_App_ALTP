@@ -7,7 +7,6 @@ public class Question {
     private List<String> answer;
 
     private int correctAns ;
-
     public Question( String questionText, List<String>answer,int correctAns) {
         this.answer = answer;
         this.questionText = questionText;

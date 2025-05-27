@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="360dp"
-    android:layout_height="300dp"
+    android:layout_height="320dp"
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="8dp"
     android:layout_gravity="center"
@@ -25,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Câu số"
-            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="35dp"
+            android:textStyle="bold"
 
             card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -37,15 +38,13 @@
             android:id="@+id/txtRewardMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:text="Số tiền"
-            android:textColor="@color/yellow"
+            android:layout_marginStart="64dp"
 
-            android:textSize="30dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.501"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            android:text="2000000VnD"
+            android:textColor="@color/yellow"
+            android:textSize="26dp"
+            card_view:layout_constraintStart_toEndOf="@+id/txtCurrentLevel"
+            tools:layout_editor_absoluteY="4dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStop"
@@ -72,6 +71,28 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="1.0"
             card_view:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn50"
+            android:layout_width="124dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="72dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.127"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/img" />
+
+        <ImageView
+            android:id="@+id/btnFriend"
+            android:layout_width="133dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="76dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.907"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/img_1" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

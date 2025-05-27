@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="300dp"
+    android:layout_height="200dp"
     android:layout_width="300dp"
     android:layout_gravity="center"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -14,32 +14,17 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtResult"
+            android:id="@+id/txtSuggest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Chính xác"
-
+            android:gravity="center_horizontal"
             android:textColor="@color/black"
-            android:textSize="44dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.502"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtResult2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:textSize="22dp"
-
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.504"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +35,7 @@
             android:layout_marginBottom="32dp"
             android:textSize="18dp"
             android:background="@drawable/bottom_ct"
-            android:text="Tiếp tục"
+            android:text="Okee thôi!!1"
             android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"

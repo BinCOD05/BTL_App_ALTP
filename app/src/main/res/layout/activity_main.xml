@@ -9,61 +9,73 @@
     android:background="@drawable/bg_game">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:text="Ai là triệu phú"
-        android:textColor="@color/white"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/txtMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginBottom="32dp"
         android:text="Thành tích"
         android:textColor="@color/yellow"
         android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPlay"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
 
+        android:layout_marginBottom="40dp"
         android:background="@drawable/bottom_ct"
         android:text="Chơi ngay"
         android:textColor="@color/white"
         android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnExit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnExit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:background="@drawable/bottom_ct"
 
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/bottom_ct"
         android:text="Thoát"
         android:textColor="@color/white"
         android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnReset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnReset"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/bottom_ct"
+        android:text="Reset Thành Tựu"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="278dp"
+        android:layout_height="311dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_start_game" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
